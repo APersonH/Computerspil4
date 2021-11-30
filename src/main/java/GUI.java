@@ -44,7 +44,7 @@ public class GUI {
     private JTextField tollSizeTextField, robberyTextField;
     
     /** Buttons */
-    private JButton optionsButton, newGameButton, pauseResumeButton, abortButton;
+    private JButton optionsButton, newGameButton, pauseResumeButton, abortButton, playLogButton, saveLogButton;
     
     /** Reference to the Game instance */
     private Game game;
@@ -369,7 +369,7 @@ public class GUI {
     public JPanel createButtonPanel(){
         //Initialize the JPanel, using a GridLayout
         JPanel buttons = new JPanel();
-        buttons.setLayout(new GridLayout(1,4));                                  
+        buttons.setLayout(new GridLayout(2,3));
         
         //Instantiate the 'New'-button
         newGameButton = new JButton("New game");
@@ -398,7 +398,21 @@ public class GUI {
         optionsButton.setEnabled(false);
         optionsButton.addActionListener(e -> showOptions());
         buttons.add(optionsButton); 
-        
+
+        // Add 'Play log...' button
+        playLogButton = new JButton("Play log...");
+        //Connect an ActionListener
+        playLogButton.addActionListener(e -> testPlayButton());
+        //Add it to the button panel
+        buttons.add(playLogButton);
+
+        // Add 'Play log...' button
+        saveLogButton = new JButton("Save log...");
+        //Connect an ActionListener
+        saveLogButton.addActionListener(e -> testSaveButton());
+        //Add it to the button panel
+        buttons.add(saveLogButton);
+
         //Return the JPanel
         return buttons;
     }

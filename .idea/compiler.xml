@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Computerspil3" />
-        <module name="Computerspil4" />
       </profile>
     </annotationProcessing>
   </component>
