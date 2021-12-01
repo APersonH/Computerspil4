@@ -438,21 +438,24 @@ public class GUI {
         game.getSettings().setActive(2, smart.isSelected());
         
         //Toll size & robbery
-        int tollSize, riskRob = 0;
+        int tollSize, riskRob, minLoss, maxLoss = 0;
         try{
             tollSize = Integer.parseInt(tollSizeTextField.getText());
             riskRob  = Integer.parseInt(robberyTextField.getText());
-            if(tollSize < 0 || riskRob < 0 || tollSize > 50 || riskRob > 50){
-                JOptionPane.showMessageDialog(mainFrame, "'Toll size' and 'Risk rob' must be between 0 and 50.", "Malformed input", JOptionPane.ERROR_MESSAGE);
+            minLoss = Integer.parseInt(minLossTextField.getText());
+            maxLoss = Integer.parseInt(maxLossTextField.getText());
+            if(tollSize < 0 || riskRob < 0 || tollSize > 50 || riskRob > 50 || minLoss < 0 || minLoss > 100 || maxLoss < 0 || maxLoss > 100){
+                JOptionPane.showMessageDialog(mainFrame, "'Toll size' and 'Risk rob' must be between 0 and 50, Min and Max Loss, between 0 and 100", "Malformed input", JOptionPane.ERROR_MESSAGE);
                 return;
             }
         } catch (NumberFormatException e){
-            JOptionPane.showMessageDialog(mainFrame, "'Toll size' and 'Risk rob' must be integers.", "Malformed input", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(mainFrame, "'Toll size' and 'Risk rob', 'Min loss' and 'Max loss' must be integers.", "Malformed input", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         game.getSettings().setRisk(riskRob);
         game.getSettings().setTollToBePaid(tollSize);
+        game.getSettings().setMinMaxRobbery(minLoss, maxLoss);
        
         
         mainFrame.setVisible(false);
