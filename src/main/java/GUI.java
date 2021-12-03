@@ -34,6 +34,10 @@ public class GUI {
     /** The JFileChooser object used for I/O (logs) */
     private JFileChooser fileChooser;
 
+    /** The Jmenubar*/
+    private JMenuBar menuBar;
+    private JMenu menu, menu2;
+
     /** More graphical components */
     private JRadioButton slowButton, medButton, fastButton, sonicButton;
     
@@ -183,6 +187,12 @@ public class GUI {
         mainFrame.setResizable(false);
         mainFrame.setContentPane(superpanel);
         mainFrame.setVisible(true);
+        menuBar = new JMenuBar();
+        menu = new JMenu("Game");
+        menu2 = new JMenu("Log");
+        menuBar.add(menu);
+        menuBar.add(menu2);
+        mainFrame.setJMenuBar(menuBar);
         
         panel.requestFocusInWindow();
         KeyListener kl = new KeyListener(){
