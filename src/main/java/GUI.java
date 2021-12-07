@@ -342,6 +342,7 @@ public class GUI {
                     break;
             }
             game.getSettings().setGameSpeed(speed);
+            mainFrame.repaint();
         });
     }
     
