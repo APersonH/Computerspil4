@@ -305,7 +305,7 @@ public class GUI {
      * @param speed The new speed of the game. 0 <= speed <= 4
      */
     public void setSpeed(int speed){
-        System.out.println(speed);
+        //System.out.println(speed);
         SwingUtilities.invokeLater(() -> {
             //Stop the game timer, and unselect all GUI buttons
             timer.stop();
