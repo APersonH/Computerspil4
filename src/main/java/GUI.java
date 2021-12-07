@@ -224,6 +224,17 @@ public class GUI {
         gameMenu.add(newGameM); gameMenu.add(pauseM); gameMenu.add(abortM); gameMenu.add(optM); gameMenu.add(speedMenu);
         logMenu.add(playLogM); logMenu.add(saveLogM);
         mainFrame.setJMenuBar(menuBar);
+
+        newGameM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,CTRL_SHIFT));
+        pauseM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P,CTRL_SHIFT));
+        abortM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,CTRL_SHIFT));
+        optM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,CTRL_SHIFT));
+        slowM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1,CTRL_SHIFT));
+        mediumM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_2,CTRL_SHIFT));
+        fastM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3,CTRL_SHIFT));
+        sonicM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4,CTRL_SHIFT));
+        playLogM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L,CTRL_SHIFT));
+        saveLogM.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,CTRL_SHIFT));
         
         panel.requestFocusInWindow();
         KeyListener kl = new KeyListener(){
