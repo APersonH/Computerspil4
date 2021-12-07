@@ -36,7 +36,8 @@ public class GUI {
 
     /** The Jmenubar*/
     private JMenuBar menuBar;
-    private JMenu menu, menu2;
+    private JMenu logMenu, gameMenu, speedMenu;
+    private JMenuItem newGameM, pauseM, abortM, optM, playLogM, saveLogM, slowM, mediumM, fastM, sonicM;
 
     /** More graphical components */
     private JRadioButton slowButton, medButton, fastButton, sonicButton;
@@ -187,11 +188,41 @@ public class GUI {
         mainFrame.setResizable(false);
         mainFrame.setContentPane(superpanel);
         mainFrame.setVisible(true);
-        menuBar = new JMenuBar();
-        menu = new JMenu("Game");
-        menu2 = new JMenu("Log");
-        menuBar.add(menu);
-        menuBar.add(menu2);
+        menuBar     = new JMenuBar();
+        gameMenu    = new JMenu("Game");
+        logMenu     = new JMenu("Log");
+        speedMenu   = new JMenu("Set speed");
+        newGameM    = new JMenuItem("New game");
+        pauseM      = new JMenuItem("Pause/Resume game");
+        abortM      = new JMenuItem("Abort game");
+        optM        = new JMenuItem("Options...");
+        playLogM    = new JMenuItem("Play log");
+        saveLogM    = new JMenuItem("Save log");
+        slowM       = new JMenuItem("Slow");
+        mediumM     = new JMenuItem("Medium");
+        fastM       = new JMenuItem("Fast");
+        sonicM      = new JMenuItem("Sonic");
+
+
+        newGameM.addActionListener(e -> newGame());
+        pauseM.addActionListener(e -> pauseResume());
+        abortButton.addActionListener(e -> {
+            game.abort();
+            updateButtonsAvailabillity();
+        });
+        optM.addActionListener(e -> showOptions());
+        playLogM.addActionListener(e -> testPlayButton());
+        saveLogM.addActionListener(e -> testSaveButton());
+        slowM.addActionListener(e -> setSpeed(1));
+        fastM.addActionListener(e -> setSpeed(2));
+        mediumM.addActionListener(e -> setSpeed(3));
+        sonicM.addActionListener(e -> setSpeed(4));
+
+        menuBar.add(gameMenu);
+        menuBar.add(logMenu);
+        speedMenu.add(slowM); speedMenu.add(mediumM); speedMenu.add(fastM); speedMenu.add(sonicM);
+        gameMenu.add(newGameM); gameMenu.add(pauseM); gameMenu.add(abortM); gameMenu.add(optM); gameMenu.add(speedMenu);
+        logMenu.add(playLogM); logMenu.add(saveLogM);
         mainFrame.setJMenuBar(menuBar);
         
         panel.requestFocusInWindow();
@@ -263,6 +294,7 @@ public class GUI {
      * @param speed The new speed of the game. 0 <= speed <= 4
      */
     public void setSpeed(int speed){
+        System.out.println(speed);
         SwingUtilities.invokeLater(() -> {
             //Stop the game timer, and unselect all GUI buttons
             timer.stop();
@@ -362,6 +394,10 @@ public class GUI {
     }
     
     private void updateButtonsAvailabillity() {
+            optM.setEnabled(!game.ongoing());
+            pauseM.setEnabled(game.ongoing());
+            abortM.setEnabled(game.ongoing());
+
             optionsButton.setEnabled(!game.ongoing());
             pauseResumeButton.setEnabled(game.ongoing());
             abortButton.setEnabled(game.ongoing());
