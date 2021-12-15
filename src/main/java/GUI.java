@@ -464,7 +464,7 @@ public class GUI {
         //Add it to the button panel
         buttons.add(playLogButton);
 
-        // Add 'Play log...' button
+        // Add 'Save log...' button
         saveLogButton = new JButton("Save log...");
         //Connect an ActionListener
         saveLogButton.addActionListener(e -> testSaveButton());
